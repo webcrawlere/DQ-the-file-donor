@@ -205,12 +205,14 @@ Nᴀᴍᴇ - {}"""
 
     IMDB_TEMPLATE_TXT = """
 <b>Query: {query}
-IMDb Data:
 
 🏷 Title: <a href={url}>{title}</a>
 🎭 Genres: {genres}
 📆 Year: <a href={url}/releaseinfo>{year}</a>
 🌟 Rating: <a href={url}/ratings>{rating}</a> / 10</b>"""
+
+    IMDB_TEMPLATE_SRC_TXT = """<code>{title}</code>\n<b>{year}</b> • <b>{kind}</b> • <b>{runtime}</b>\n\n<b>🦋 Tɪᴛʟᴇ : </b><a href={url}>{title} ({year})</a>\n<b>⭐ Rᴀᴛɪɴɢ:</b> <code>{rating} / 10</code>\n<b>🎭 Gᴇɴʀᴇs:</b> {genres}\n<b>📆 Rᴇʟᴇᴀsᴇᴅ:</b> {release_date}\n<b>🎙️ Lᴀɴɢᴜᴀɢᴇs:</b> {languages}\n<b>🌎 Cᴏᴜɴᴛʀɪᴇs:</b> {countries}\n\n<b>🎬 Sᴛᴏʀʏʟɪɴᴇ:</b> \n\t❝ <code>{plot}</code> ❞\n\n<b>⚠️ Mɪɴᴅfʟᴀʏᴇʀ's Mɪʀʀᴏʀ</b>
+"""
     
     ALL_FILTERS = """
 <b>Hᴇʏ {}, Tʜᴇsᴇ ᴀʀᴇ ᴍʏ ᴛʜʀᴇᴇ ᴛʏᴘᴇs ᴏғ ғɪʟᴛᴇʀs.</b>"""
