@@ -38,12 +38,13 @@ async def save_group(bot, message):
             await bot.leave_chat(message.chat.id)
             return
         buttons = [[
-                                                                           InlineKeyboardButton('ʙᴏᴛ ᴏᴡɴᴇʀ', url="t.me/arvinxoxo"),
-                                                                           InlineKeyboardButton('ᴄʜᴇᴄᴋ ᴘᴍ', url="https://t.me/{temp.U_NAME}")
-                                                                        ],[
-                                                                           InlineKeyboardButton("ʀᴇᴀᴅ ɢʀᴏᴜᴘ ʀᴜʟᴇs📌", url="https://graph.org/Bot-of-Mindflayers-Mirror-12-24")
-                                                                         ]]
+                    InlineKeyboardButton('ʙᴏᴛ ᴏᴡɴᴇʀ', url="t.me/arvinxoxo"),
+                    InlineKeyboardButton('ᴄʜᴇᴄᴋ ᴘᴍ', url="https://t.me/{temp.U_NAME}")
+                 ],[
+                    InlineKeyboardButton("ʀᴇᴀᴅ ɢʀᴏᴜᴘ ʀᴜʟᴇs📌", url="https://graph.org/Bot-of-Mindflayers-Mirror-12-24")
+                  ]]
         reply_markup=InlineKeyboardMarkup(buttons)
+        disable_web_page_preview=True
         await message.reply_text(
             text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
             reply_markup=reply_markup)
