@@ -191,7 +191,6 @@ Nᴀᴍᴇ - {}"""
 
     CAPTION = """
 <b>📂 Fɪʟᴇ ɴᴀᴍᴇ : </b> <code>{file_name}</code>
-
 <b>
 ╭─────── • ◆ • ───────╮
    🦋 ᴘʀᴏᴠɪᴅᴇᴅ ʙʏ Sᴀᴅɪᴇ
@@ -199,7 +198,7 @@ Nᴀᴍᴇ - {}"""
 </b>"""
 
     IMDB_TEMPLATE_TXT = """
-<b>Query: {query}
+<b>ⓒ IMDb | Query: {query}
 
 🏷 Title: <a href={url}>{title}</a>
 🎭 Genres: {genres}
