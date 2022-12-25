@@ -41,6 +41,20 @@ class temp(object):
     B_NAME = None
     SETTINGS = {}
 
+def TimeFormatter(milliseconds: int) -> str:
+    seconds, milliseconds = divmod(milliseconds, 1000)
+    minutes, seconds = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    tmp = (
+        (f"{int(days)}d, " if days else "")
+        + (f"{int(hours)}h, " if hours else "")
+        + (f"{int(minutes)}m, " if minutes else "")
+        + (f"{int(seconds)}s, " if seconds else "")
+        + (f"{int(milliseconds)}ms, " if milliseconds else "")
+    )
+    return tmp[:-2]
+
 async def is_subscribed(bot, query):
     try:
         user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
@@ -113,7 +127,7 @@ async def get_poster(query, bulk=False, id=False, file=None):
         'kind': movie.get("kind"),
         "imdb_id": f"tt{movie.get('imdbID')}",
         "cast": list_to_str(movie.get("cast")),
-        "runtime": list_to_str(movie.get("runtimes")),
+        "runtime": list_to_str([TimeFormatter(int(run) * 60 * 1000) for run in movie.get("runtimes", "0")]),
         "countries": list_to_str(movie.get("countries")),
         "certificates": list_to_str(movie.get("certificates")),
         "languages": list_to_str(movie.get("languages")),
@@ -254,6 +268,39 @@ def list_to_str(k):
         return ' '.join(f'{elem}, ' for elem in k)
     else:
         return ' '.join(f'{elem}, ' for elem in k)
+
+def list_to_hash(k, flagg=False):
+    listing = ""
+    if not k:
+        return ""
+    elif len(k) == 1:
+        if not flagg:
+            return str("#"+k[0].replace(" ", "_").replace("-", "_"))
+        try:
+            conflag = (conn.get(name=k[0])).flag
+            return str(f"{conflag} #" + k[0].replace(" ", "_").replace("-", "_"))
+        except AttributeError:
+            return str("#"+k[0].replace(" ", "_").replace("-", "_"))
+    elif MAX_LIST_ELM:
+        k = k[:int(MAX_LIST_ELM)]
+        for elem in k:
+            ele = elem.replace(" ", "_").replace("-", "_")
+            if flagg:
+                try:
+                    conflag = (conn.get(name=elem)).flag
+                    listing += f'{conflag} '
+                except AttributeError:
+                    pass
+            listing += f'#{ele}, '
+        return f'{listing[:-2]} ...'
+    else:
+        for elem in k:
+            ele = elem.replace(" ", "_").replace("-", "_")
+            if flagg:
+                conflag = (conn.get(name=elem)).flag
+                listing += f'{conflag} '
+            listing += f'#{ele}, '
+        return listing[:-2]
 
 def last_online(from_user):
     time = ""
